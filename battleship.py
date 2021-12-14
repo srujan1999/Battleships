@@ -76,7 +76,7 @@ def createShip():
     r=random.randint(1, 8)
     c=random.randint(1, 8)
     s=random.randint(0, 1)
-    if s==0:
+    if s==1:
         ship=[[r-1,c],[r,c],[r+1,c]]
     else:
         ship=[[r,c-1],[r,c],[r,c+1]]
@@ -91,7 +91,7 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def checkShip(grid, ship):
-    for i in ship: #[[0,1],[1,2],[2,1]]
+    for i in ship: 
         if grid[i[0]][i[1]]!=EMPTY_UNCLICKED:
             return False
     return True
@@ -103,7 +103,15 @@ Parameters: 2D list of ints ; int
 Returns: 2D list of ints
 '''
 def addShips(grid, numShips):
-    return
+    n=0
+    while n<numShips:  
+        z=createShip() 
+        x=checkShip(grid, z)
+        if x==True:
+            for j in z:
+                grid[j[0]][j[1]]=SHIP_UNCLICKED
+            n+=1
+    return grid
 
 
 '''
@@ -282,7 +290,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testCheckShip()
+    test.testAddShips()
 
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
