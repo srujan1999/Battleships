@@ -25,7 +25,17 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def makeModel(data):
-    return
+    data["row"]=10
+    data["cols"]=10
+    data["boardsize"]=500
+    data["cellsize"]=data["boardsize"]/data["row"]
+    data["userboard"]=emptyGrid(data["row"], data["cols"])
+    data["pc"]=emptyGrid(data["row"], data["cols"])
+    data["no of ships"]=5
+    addShips(data["pc"],5)
+    data["userboard"]=createShip()
+    data["pc"]=createShip()
+    return data
 
 
 '''
@@ -92,7 +102,7 @@ Returns: bool
 '''
 def checkShip(grid, ship):
     for i in ship: 
-        if grid[i[0]][i[1]]!=EMPTY_UNCLICKED:
+        if grid[i[0]][i[1]]!=EMPTY_UNCLICKED: 
             return False
     return True
 
@@ -290,7 +300,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testAddShips()
+    test.testMakeModel()
 
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
