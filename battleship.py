@@ -32,7 +32,7 @@ def makeModel(data):
     data["userboard"]=emptyGrid(data["row"], data["cols"])
     data["pc"]=emptyGrid(data["row"], data["cols"])
     data["no of ships"]=5
-    addShips(data["pc"],5)
+    data["pc"]=addShips(data["pc"],5)
     data["userboard"]=createShip()
     data["pc"]=createShip()
     return data
@@ -100,7 +100,7 @@ checkShip(grid, ship)
 Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
-def checkShip(grid, ship):
+def checkShip(grid, ship): 
     for i in ship: 
         if grid[i[0]][i[1]]!=EMPTY_UNCLICKED: 
             return False
@@ -130,7 +130,13 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; 2D list of ints ; boo
 Returns: None
 '''
 def drawGrid(data, canvas, grid, showShips):
-    return
+    for i in range(data["rows"]):
+        for j in range(data["cols"]):
+            if grid[i][j]==SHIP_UNCLICKED:
+                canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="yellow")
+            else:
+                canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="blue")
+    return 
 
 
 ### WEEK 2 ###
@@ -300,7 +306,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testMakeModel()
+    test.testDrawGrid()
 
     ## Finally, run the simulation to test it manually ##
-    # runSimulation(500, 500)
+    runSimulation(500, 500)
