@@ -29,12 +29,11 @@ def makeModel(data):
     data["cols"]=10
     data["boardsize"]=500
     data["cellsize"]=data["boardsize"]/data["row"]
-    data["userboard"]=emptyGrid(data["row"], data["cols"])
+    data["userboard"]=test.testGrid()
     data["pc"]=emptyGrid(data["row"], data["cols"])
     data["no of ships"]=5
     data["pc"]=addShips(data["pc"],5)
-    data["userboard"]=createShip()
-    data["pc"]=createShip()
+
     return data
 
 
@@ -44,6 +43,8 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
 Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
+    drawGrid(data,userCanvas,data["userboard"],True)
+    drawGrid(data, compCanvas, data["pc"], False)
     return
 
 
@@ -130,10 +131,13 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; 2D list of ints ; boo
 Returns: None
 '''
 def drawGrid(data, canvas, grid, showShips):
-    for i in range(data["rows"]):
+    for i in range(data["row"]):
         for j in range(data["cols"]):
             if grid[i][j]==SHIP_UNCLICKED:
-                canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="yellow")
+                if showShips==True:
+                    canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="yellow")
+                else:
+                    canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="blue")
             else:
                 canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="blue")
     return 
