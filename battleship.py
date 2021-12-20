@@ -32,7 +32,7 @@ def makeModel(data):
     data["userboard"]=emptyGrid(data["row"], data["cols"])
     data["pc"]=emptyGrid(data["row"], data["cols"])
     data["no of ships"]=5
-    addShips(data["pc"],5)
+    data["pc"]=addShips(data["pc"],5)
     data["userboard"]=createShip()
     data["pc"]=createShip()
     return data
@@ -130,7 +130,8 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; 2D list of ints ; boo
 Returns: None
 '''
 def drawGrid(data, canvas, grid, showShips):
-    return
+
+    return 
 
 
 ### WEEK 2 ###
