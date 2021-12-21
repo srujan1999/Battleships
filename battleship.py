@@ -43,7 +43,7 @@ Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["userboard"],True)
-    drawGrid(data, compCanvas, data["pc"], False)
+    drawGrid(data, compCanvas, data["pc"], True)
     return
 
 
@@ -179,7 +179,8 @@ Parameters: dict mapping strs to values ; mouse event object
 Returns: list of ints
 '''
 def getClickedCell(data, event):
-    return
+    c=data["cellsize"] 
+    return [int(event.y/c),int(event.x/c)]
 
 
 '''
@@ -320,7 +321,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testIsHorizontal()
+    test.testGetClickedCell()
 
     ## Finally, run the simulation to test it manually ##
     #runSimulation(500, 500)
