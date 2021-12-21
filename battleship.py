@@ -44,7 +44,7 @@ Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["userboard"],True)
-    drawGrid(data, compCanvas, data["pc"], False)
+    drawGrid(data, compCanvas, data["pc"], True)
     return
 
 
