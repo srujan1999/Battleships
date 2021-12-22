@@ -220,7 +220,6 @@ def placeShip(data):
     if shipIsValid(g, data["tempship"]):
         for i in data["tempship"]:
             g[i[0]][i[1]]=SHIP_UNCLICKED
-        data["userships"]=data["userships"]+1
     else:
         print("Ship is not Valid")
     data["tempship"]=[]
