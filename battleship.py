@@ -257,6 +257,12 @@ Parameters: dict mapping strs to values ; 2D list of ints ; int ; int ; str
 Returns: None
 '''
 def updateBoard(data, board, row, col, player):
+    board=data["pc"]
+    if board[row][col]==SHIP_UNCLICKED:
+        board[row][col]=SHIP_CLICKED
+    elif board[row][col]==EMPTY_UNCLICKED:
+        board[row][col]=EMPTY_CLICKED
+
     return
 
 
@@ -352,6 +358,6 @@ def runSimulation(w, h):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
     
-    
+    test.testUpdateBoard()
     ## Finally, run the simulation to test it manually ##
-    runSimulation(500, 500)
+    #runSimulation(500, 500)
