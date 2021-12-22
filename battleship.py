@@ -204,8 +204,9 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
-    if len(ship)==3 and checkShip(grid,ship)==True and (isVertical(ship)==True or isHorizontal(ship)==True):
-        return True
+    if  checkShip(grid,ship):
+        if (isVertical(ship)==True or isHorizontal(ship)==True):
+            return True
     return False
 
 
@@ -215,6 +216,14 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def placeShip(data):
+    g=data["userboard"]
+    if shipIsValid(g, data["tempship"]):
+        for i in data["tempship"]:
+            g[i[0]][i[1]]=SHIP_UNCLICKED
+        data["userships"]=data["userships"]+1
+    else:
+        print("Ship is not Valid")
+    data["tempship"]=[]
     return
 
 
