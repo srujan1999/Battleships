@@ -68,6 +68,8 @@ def mousePressed(data, event, board):
     row,col=getClickedCell(data, event)
     if board=="user":
         clickUserBoard(data, row, col)
+    if board=="comp":
+        runGameTurn(data, row, col)
 
     pass
 
