@@ -35,6 +35,7 @@ def makeModel(data):
     addShips(data["pc"],data["no of ships"])
     data["tempship"]=[]
     data["userships"]=0
+    data["Winner"]=None
     return data
 
 
@@ -265,7 +266,8 @@ def updateBoard(data, board, row, col, player):
         board[row][col]=SHIP_CLICKED
     elif board[row][col]==EMPTY_UNCLICKED:
         board[row][col]=EMPTY_CLICKED
-
+    if isGameOver(board)==True:
+        data["winner"]=player
     return
 
 
@@ -307,7 +309,10 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isGameOver(board):
-    return
+    for i in range(len(board)):
+            if SHIP_UNCLICKED in board[i]:
+                return False
+    return True
 
 
 '''
@@ -374,7 +379,6 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testGetComputerGuess()
-    
+    test.testIsGameOver()
     ## Finally, run the simulation to test it manually ##
-    runSimulation(500, 500)
+    #runSimulation(500, 500)
