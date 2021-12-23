@@ -275,7 +275,7 @@ def runGameTurn(data, row, col):
     if pc[row][col]== SHIP_CLICKED or EMPTY_CLICKED:
         return
     else:
-        updateBoard(data, board, row, col, "user")
+        updateBoard(data, pc, row, col, "user")
     return
 
 
