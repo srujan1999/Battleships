@@ -45,7 +45,7 @@ Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["userboard"],True)
-    drawGrid(data, compCanvas, data["pc"], True)
+    drawGrid(data, compCanvas, data["pc"], False)
     drawShip(data,userCanvas,data["tempship"])
     return
 
@@ -70,8 +70,6 @@ def mousePressed(data, event, board):
         clickUserBoard(data, row, col)
     if board=="comp":
         runGameTurn(data, row, col)
-
-    pass
 
 #### WEEK 1 ####
 
@@ -146,6 +144,10 @@ def drawGrid(data, canvas, grid, showShips):
                     canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="yellow")
                 else:
                     canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="blue")
+            elif grid[i][j]==SHIP_CLICKED:
+                canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="red")
+            elif grid[i][j]==EMPTY_CLICKED:
+                canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="white")
             else:
                 canvas.create_rectangle(j*data["cellsize"],i*data["cellsize"],data["cellsize"]+j*data["cellsize"], i*data["cellsize"]+data["cellsize"], fill="blue")
     return 
@@ -274,7 +276,7 @@ Returns: None
 '''
 def runGameTurn(data, row, col):
     pc=data["pc"]
-    if pc[row][col]== SHIP_CLICKED or EMPTY_CLICKED:
+    if pc[row][col]== SHIP_CLICKED or  pc[row][col]== EMPTY_CLICKED:
         return
     else:
         updateBoard(data, pc, row, col, "user")
@@ -364,6 +366,6 @@ def runSimulation(w, h):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
     
-    test.testUpdateBoard()
+    
     ## Finally, run the simulation to test it manually ##
-    #runSimulation(500, 500)
+    runSimulation(500, 500)
