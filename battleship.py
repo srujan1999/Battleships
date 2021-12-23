@@ -271,6 +271,11 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def runGameTurn(data, row, col):
+    pc=data["pc"]
+    if pc[row][col]== SHIP_CLICKED or EMPTY_CLICKED:
+        return
+    else:
+        updateBoard(data, board, row, col, "user")
     return
 
 
