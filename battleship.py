@@ -48,6 +48,7 @@ def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["userboard"],True)
     drawGrid(data, compCanvas, data["pc"], False)
     drawShip(data,userCanvas,data["tempship"])
+    drawGameOver(data, userCanvas)
     return
 
 
@@ -71,6 +72,12 @@ def mousePressed(data, event, board):
         clickUserBoard(data, row, col)
     if board=="comp":
         runGameTurn(data, row, col)
+    if data["Winner"]!=None:
+        return None
+
+        
+
+        
 
 #### WEEK 1 ####
 
@@ -267,7 +274,7 @@ def updateBoard(data, board, row, col, player):
     elif board[row][col]==EMPTY_UNCLICKED:
         board[row][col]=EMPTY_CLICKED
     if isGameOver(board)==True:
-        data["winner"]=player
+        data["Winner"]=player
     return
 
 
@@ -321,6 +328,11 @@ Parameters: dict mapping strs to values ; Tkinter canvas
 Returns: None
 '''
 def drawGameOver(data, canvas):
+    if data["Winner"]=="user":
+        canvas.create_text(200, 200, text="Congratulations", font=('Arial',30,'bold italic'), anchor="center")
+    elif data["Winner"]=="comp":
+        canvas.create_text(200, 200, text="User Lost", font=('Arial',30,'bold italic'),anchor="center")
+
     return
 
 
@@ -379,6 +391,6 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testIsGameOver()
+    test.testDrawGameOver()
     ## Finally, run the simulation to test it manually ##
-    #runSimulation(500, 500)
+    runSimulation(500, 500)
