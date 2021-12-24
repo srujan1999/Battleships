@@ -36,6 +36,7 @@ def makeModel(data):
     data["tempship"]=[]
     data["userships"]=0
     data["Winner"]=None
+    data["max turns"]=50
     return data
 
 
@@ -46,7 +47,7 @@ Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["userboard"],True)
-    drawGrid(data, compCanvas, data["pc"], False)
+    drawGrid(data, compCanvas, data["pc"], True)
     drawShip(data,userCanvas,data["tempship"])
     drawGameOver(data, userCanvas)
     return
@@ -67,13 +68,14 @@ Parameters: dict mapping strs to values ; mouse event object ; 2D list of ints
 Returns: None
 '''
 def mousePressed(data, event, board):
+    if data["Winner"]!=None:
+        return 
     row,col=getClickedCell(data, event)
     if board=="user":
         clickUserBoard(data, row, col)
     if board=="comp":
         runGameTurn(data, row, col)
-    if data["Winner"]!=None:
-        return None
+
 
         
 
@@ -391,6 +393,6 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testDrawGameOver()
+    #test.testDrawGameOver()
     ## Finally, run the simulation to test it manually ##
     runSimulation(500, 500)
