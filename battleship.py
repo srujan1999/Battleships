@@ -67,13 +67,14 @@ Parameters: dict mapping strs to values ; mouse event object ; 2D list of ints
 Returns: None
 '''
 def mousePressed(data, event, board):
+    if data["Winner"]!=None:
+        return 
     row,col=getClickedCell(data, event)
     if board=="user":
         clickUserBoard(data, row, col)
     if board=="comp":
         runGameTurn(data, row, col)
-    if data["Winner"]!=None:
-        return None
+
 
         
 
