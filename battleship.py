@@ -256,7 +256,7 @@ Returns: None
 '''
 def clickUserBoard(data, row, col):
     g=data["userboard"]
-    if [row,col] in g or data["userships"]==5:
+    if g[row][col]==SHIP_UNCLICKED  or data["userships"]==5:
         return
     data["tempship"].append([row,col])
     if len(data["tempship"])==3:
